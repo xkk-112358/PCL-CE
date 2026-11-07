@@ -186,7 +186,7 @@ public static partial class LocalComp
         if (!Directory.Exists(data.compPath))
             return modList;
 
-        var rawName = data.compPath.ToLower();
+        var rawName = data.compPath.TrimEnd('\\', '/').ToLower();
         if (data.compType == CompType.Schematic)
             EnumerateSchematicResourceFiles(data, modList);
         else
