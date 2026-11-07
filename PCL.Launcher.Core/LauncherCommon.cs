@@ -238,7 +238,7 @@ public static class LauncherCommon
             File.WriteAllLines(
                 fileName,
                 content.Select(pair => $"{pair.Key}:{pair.Value}"),
-                Encoding.UTF8);
+                new UTF8Encoding(false));
         }
         catch
         {

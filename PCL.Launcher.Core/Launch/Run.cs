@@ -179,8 +179,11 @@ public static partial class GameLaunch
             currentLang,
             "none",
             StringComparison.OrdinalIgnoreCase);
-        var hasExistingSaves = Directory.Exists(
-            Path.Combine(InstanceList.McMcInstanceSelected!.PathIndie, "saves"));
+        var savesPath = Path.Combine(InstanceList.McMcInstanceSelected!.PathIndie, "saves");
+        // 空存档文件夹是游戏首次启动时自动创建的，不能据此认为玩家已有存档
+        var hasExistingSaves = Directory.Exists(savesPath)
+            && Directory.EnumerateDirectories(savesPath)
+                .Any(savePath => File.Exists(Path.Combine(savePath, "level.dat")));
         var shouldUseDefault = isLanguageUnconfigured || !hasExistingSaves;
         var requiredLang = _ResolveMinecraftLanguage(
             currentLang,

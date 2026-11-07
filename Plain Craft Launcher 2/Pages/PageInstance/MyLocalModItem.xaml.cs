@@ -200,7 +200,7 @@ public partial class MyLocalCompItem
             // 标签
             if (Entry.IsFolder)
                 // 为文件夹添加标签
-                Tags = [Lang.Text("Instance.Resource.Item.FolderTag")];
+                Tags = ["Instance.Resource.Item.FolderTag"];
             else if (Entry.Comp is not null) Tags = Entry.Comp.Tags;
         }));
     }
@@ -534,7 +534,7 @@ public partial class MyLocalCompItem
                 };
                 var tagTextBlock = new TextBlock
                 {
-                    Text = tagText,
+                    Text = Lang.Text(tagText),
                     Foreground = new SolidColorBrush(ThemeManager.IsDarkMode
                         ? Color.FromArgb(88, 255, 255, 255)
                         : Color.FromArgb(88, 136, 136, 136)),
